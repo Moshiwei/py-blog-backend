@@ -4,16 +4,19 @@ from typing import List
 from init import init_db
 from resources.blog import get_all_blogs
 
-def init_app():
-    init_db()
-    print("Database initialized")
+# def init_app():
+#     init_db()
+#     print("Database initialized")
 
-app = FastAPI(lifespan=init_app)
+app = FastAPI()
 
 # @app.post("/posts/", response_model=BlogPost)
 # def create_post(post: BlogPost):
 #     blog_posts.append(post)
 #     return post
+@app.get("/")
+def index():
+    return "Hello, FastAPI"
 
 @app.get("/posts/", response_model=List[BlogPost])
 def get_posts():

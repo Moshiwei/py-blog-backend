@@ -1,14 +1,15 @@
-from ..db import execute_sql
-from ..models import BlogPost
+from db import db
+from models.blog import BlogPost
 
 def add_blog():
     pass
 
 def get_all_blogs():
     sql = "SELECT * FROM blogs"
-    blogs = execute_sql(sql)
-    serialized_res = [BlogPost(**dict(blog)) for blog in blogs]
-    return serialized_res
+    blogs = db.query(sql)
+    # no need to add this line, because the content fetched from db is OK directly.
+    # serialized_res = [BlogPost(**dict(blog)) for blog in blogs]
+    return blogs
     
 
 def get_blog():
