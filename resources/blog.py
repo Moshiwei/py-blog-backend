@@ -21,6 +21,7 @@ def get_all_blogs():
 def get_blog():
     pass
 
+# TODO
 def update_blog():
     pass
 
