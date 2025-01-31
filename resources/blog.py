@@ -1,8 +1,14 @@
 from db import db
-from models.blog import BlogPost
+from models.blog import BlogPost, CreatePost
 
-def add_blog():
-    pass
+def add_blog(blog: CreatePost):
+    # one big problem! forbid write sql by using format string which will cause sql syntaxError
+    sql = """
+        insert into blogs (title, content)
+        values (%s, %s)
+        returning *;
+    """
+    res = db.execute(sql, (blog.title, blog.content))
 
 def get_all_blogs():
     sql = "SELECT * FROM blogs"
