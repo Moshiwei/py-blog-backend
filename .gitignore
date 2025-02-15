@@ -125,3 +125,6 @@ cython_debug/
 
 # FastAPI specific
 *.log
+
+# VScode
+*.vscode

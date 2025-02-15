@@ -1,5 +1,5 @@
 from db import db
-from models.blog import BlogPost, CreatePost
+from models.blog import BlogPost, CreatePost, UpdatePost
 
 def add_blog(blog: CreatePost):
     # one big problem! forbid write sql by using format string which will cause sql syntaxError
@@ -21,9 +21,16 @@ def get_all_blogs():
 def get_blog():
     pass
 
-# TODO
-def update_blog():
-    pass
+
+def update_blog(blog: UpdatePost):
+    sql = """
+        UPDATE blogs
+        SET 
+            title = '只更新标题',
+            updated_at = CURRENT_TIMESTAMP
+        WHERE id = %d;
+    """
+    db.execute(sql, blog.id)
 
 def delete_blog():
     pass
